@@ -1,0 +1,37 @@
+{
+  "name": "finance-tracker",
+  "version": "1.0.0",
+  "description": "Finance tracker backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client-install": "npm install --prefix client",
+    "client-build": "npm run build --prefix client",
+    "heroku-postbuild": "npm run client-install && npm run client-build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvcuevas/finance-tracker.git"
+  },
+  "author": "alvcuevas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alvcuevas/finance-tracker/issues"
+  },
+  "homepage": "https://github.com/alvcuevas/finance-tracker#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.5",
+    "morgan": "^1.10.0",
+    "colors": "^1.4.0"
+  }
+}
