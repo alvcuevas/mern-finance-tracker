@@ -25,10 +25,6 @@ mongoose.connection.on('connected', () => {
   console.log('Mongoose is connected!');
 });
 
-// if (process.env.NODE_ENV === 'development') {
-//   app.use(morgan('dev'));
-// }
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')));
