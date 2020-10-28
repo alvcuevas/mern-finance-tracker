@@ -3,17 +3,27 @@ const path = require('path');
 const dotenv = require('dotenv');
 // const morgan = require('morgan');
 const cors = require('cors');
-const connectDB = require('./config/db');
+// const connectDB = require('./config/db');
+const mongoose = require('mongoose');
 dotenv.config({ path: './config/config.env' });
 
-connectDB();
+// connectDB();
 
+const app = express();
 const transactionsRoutes = require('./routes/transactions');
 const PORT = process.env.PORT || 5000;
-const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/blabla', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose is connected!');
+});
 
 // if (process.env.NODE_ENV === 'development') {
 //   app.use(morgan('dev'));
