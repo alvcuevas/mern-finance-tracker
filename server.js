@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
-const colors = require('colors');
 const morgan = require('morgan');
 const cors = require('cors');
 const connectDB = require('./config/db');
@@ -26,7 +25,4 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use('/api/transactions', transactionsRoutes);
-app.listen(
-  PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold)
-);
+app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
