@@ -2,8 +2,6 @@ import React, { createContext, useReducer } from 'react';
 import AppReducer from './AppReducer';
 import axios from 'axios';
 
-const API_URL = '/api/transactions';
-
 const initialState = {
   transactions: [],
   loading: true,
@@ -17,7 +15,7 @@ export const GlobalProvider = ({ children }) => {
 
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get(API_URL);
+      const res = await axios.get('/api/transactions');
       dispatch({ type: 'FETCH_TRANSACTIONS', payload: res.data?.data });
     } catch (err) {
       dispatch({ type: 'TRANSACTIONS_ERROR', payload: err?.response?.data?.error });
@@ -30,7 +28,7 @@ export const GlobalProvider = ({ children }) => {
     };
 
     try {
-      const res = await axios.post(API_URL, transaction, options);
+      const res = await axios.post('/api/transactions', transaction, options);
       dispatch({ type: 'ADD_TRANSACTION', payload: res.data.data });
     } catch (err) {
       dispatch({ type: 'TRANSACTIONS_ERROR', payload: err.response.data?.error });
@@ -39,7 +37,7 @@ export const GlobalProvider = ({ children }) => {
 
   const deleteTransaction = async id => {
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await axios.delete(`/api/transactions/${id}`);
       dispatch({ type: 'DELETE_TRANSACTION', payload: id });
     } catch (err) {
       dispatch({ type: 'TRANSACTIONS_ERROR', payload: err.response.data?.error });
