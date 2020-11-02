@@ -4,6 +4,7 @@
 
 - _Client_ - React 16, Hooks, Context, Axios
 - _Server_ - NodeJS, Express, Mongoose
+- _DB_ - MongoDB Atlas
 
 ### Usage
 
